@@ -1,0 +1,544 @@
+body {
+    margin: 0 auto;
+    max-width: 1240px;
+    font-family: 'DM Sans';
+}
+
+#contact_modal {
+    display: none;
+}
+
+.photographer_banner {
+    height: 133px;
+}
+
+.photograph-header {
+    background-color: #FAFAFA;
+    height: 313px;
+    display: flex;
+    position: relative;
+    width: 1240px;
+}
+
+.photograph-header h2 {
+    font-size: 64px;
+    font-weight: 400;
+    line-height: 83px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #D3573C;
+    position: absolute;
+    top: 71px;
+    left: 50px;
+}
+
+.photograph-header h3 {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 31px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #901C1C;
+    position: absolute;
+    left: 50px;
+    top: 154px;
+}
+
+.photograph-header p {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #525252;
+    position: absolute;
+    left: 50px;
+    top: 204px;
+}
+
+
+.photograph-header img {
+    height: 226px;
+    width: auto;
+    position: relative;
+    left: -13px;
+    top: -9px;
+}
+
+.photograph-header .photographer_card {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    align-self: center;
+    position: absolute;
+    right: 50px;
+}
+
+
+.contact_button {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    padding: 11px;
+    width: 170px;
+    height: 70px;
+    border: none;
+    background-color: #901C1C;
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.contact_button:hover {
+    background-color: #D3573C;
+}
+
+.photograph-content {
+    display: flex;
+}
+
+/*   DROPDOWN      */
+
+.trier {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: left;
+    padding-top: 20px;
+}
+
+/* Common styles for dropdown components */
+.dropdown {
+    border-radius: 5px;
+    margin-left: 25px;
+    margin-top: 9px;
+    position: relative;
+    display: flex;
+    width: 170px;
+    flex-direction: column;
+    background: #901C1C;
+  }
+ 
+
+  .dropdown-menu {
+    display: none;
+    transition: display 0.2s ease;
+    list-style: none;
+    height: 106px;
+  }
+  
+  .dropdown-option {
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 23px;
+    letter-spacing: 0em;
+    color: white;
+    background: #901C1C;
+    width: 100%;
+    padding-left: 20px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .selected {
+    height: 64px;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    align-items: center;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 23px;
+    letter-spacing: 0em;
+    color: white;
+    background: #901C1C;
+  }
+  
+  .dropdown-icon {
+    position: absolute;
+    right: 19px;
+    top: 18px;
+    transition: transform 0.15s ease-in-out;
+  }
+  
+  /* Hover and focus styles for dropdown options */
+  .dropdown-option:hover,
+  #filter-popularite:hover,
+  .dropdown-option:focus,
+  #filter-popularite:focus {
+    background-color: #D3573C;
+    color: #FFFFFF;
+  }
+
+
+  /* Dropdown divider styles */
+  .dropdown-divider {
+    border-top: 1px solid #FFFFFF;
+    position: absolute;
+    width: 100%;
+    top: 64px; /* Position the first divider */
+  }
+  
+
+  
+
+.dropdown svg {
+    position: absolute;
+    z-index: 500;
+}
+
+li {
+    list-style: none;
+}
+
+.dropdown-divider {
+    position: absolute;
+    width: 150px;
+    height: 1px;
+    left: 10px;
+    background-color: white;
+    border: none;
+}
+
+/* Position the dividers */
+.dropdown-divider:first-of-type {
+    top: 113px; /* Position the first divider */
+  }
+  
+
+.photo {
+    width: 350px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.photo-info h3 {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.photo img {
+    width: 100%;
+    height: 300px;
+    min-height: 300px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 5px;
+}
+
+.photo-info {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 31px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #901C1C;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    justify-content: space-between;
+}
+
+.likes-container {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    align-items: center;
+}
+
+.photo-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-top: 20px;
+    width: 1240px;
+}
+
+video {
+    min-width: 350px;
+    min-height: 300px;
+    object-fit: cover;
+}
+
+.photo-grid .photo {
+    margin-bottom: 20px;
+}
+
+.price-and-likes {
+    height: 68px;
+    width: 376px;
+    background: #DB8876;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 31px;
+    letter-spacing: 0em;
+    text-align: right;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    right: 3%;
+    border-radius: 5px;
+    color: #000000;
+}
+
+.price {
+    position: absolute;
+    right: 34px;
+}
+
+.total-likes {
+    padding-left: 31px;
+    padding-right: 4.62px;
+}
+
+/* heart animation */
+@keyframes heartbeat {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Apply the animation to the heart SVG when it has the .liked class */
+.liked {
+    animation: heartbeat 0.5s 1;
+}
+
+.send-button {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    padding: 11px;
+    width: 170px;
+    height: 70px;
+    border: none;
+    background-color: #901C1C;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.send-button:hover {
+    background-color: #D3573C;
+}
+
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    height: 900px;
+    border-radius: 5px;
+    background-color: #DB8876;
+    width: 669px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 35px 0 35px;
+    margin: auto;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+    /* Should be below the modal z-index */
+    display: none;
+}
+
+
+
+.modal header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+}
+
+.field-error {
+    outline: 7px groove #dc3545;;
+}
+
+.modal header img {
+    cursor: pointer;
+}
+
+.modal header h2 {
+    font-size: 64px;
+    font-weight: normal;
+    text-align: left;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.firstname-container {
+    padding-top: 72px;
+}
+
+
+form {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+form label {
+    color: #312E2E;
+    font-size: 36px;
+}
+
+form div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: self-start;
+}
+
+form input {
+    width: 100%;
+    height: 68px;
+    border: none;
+    border-radius: 5px;
+    padding: 8px; 
+    font-size: 18px;
+}
+
+#message {
+    height: 170px;
+    margin-bottom: 26px;
+    vertical-align: top;
+    line-height: 1;
+    width: 100%;
+    border-radius: 5px;
+    padding: 8px; 
+    font-size: 18px;
+}
+
+.message-container {
+    padding-top: 8px;
+}
+
+.modal-close-btn {
+    position: absolute;
+    right: 0;
+    top: 15px;
+}
+
+.lightbox-media {
+    width: 1050px;
+    height: 900px;
+    z-index: 1000;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: auto;
+    object-fit: contain;
+}
+
+.image-carousel svg {
+    z-index: 1234;
+}
+
+/* CSS to style the image carousel */
+.image-carousel {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+  }
+  
+  .carousel-prev, .carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 200px;
+    height: 400px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1234;
+  }
+  
+  .carousel-prev {
+    left : 25px; 
+  }
+  
+  .carousel-next {
+    right: 25px; 
+  }
+  
+  .carousel-content {
+    position: relative;
+    text-align: center;
+    height: 100%;
+  }
+  
+  .carousel-close {
+    position: absolute;
+    top: 20px; 
+    right: 25px; 
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 200px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1234;
+  }
+
+.media-title {
+    position: absolute;
+    bottom: 0px;
+    background: white;
+    padding: 10px 20px;
+    z-index: 1234;
+    color: #901C1C;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 31px;
+    letter-spacing: 0em;
+    left: 50%;
+    transform: translateX(-50%);  
+}

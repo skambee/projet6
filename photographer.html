@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <link href="css/style.css" rel="stylesheet" type="text/css">
+  <link href="css/photographer.css" rel="stylesheet" type="text/css">
+  <meta charset="utf-8">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+  <title>Fisheye - photographe </title>
+</head>
+
+<body>
+  <header class="photographer_banner">
+    <a href="index.html" aria-label="Fisheye Home Page">
+      <img src="assets/images/logo.png" class="logo" alt="fisheye logo" width="512" height="128">
+    </a>
+  </header>
+  <main id="main">
+    <div class="photograph-header">
+      <button class="contact_button" tabindex="0">Contactez-moi</button>
+    </div>
+
+    <div class="photograph-content">
+
+      <h2 class="trier">Trier par</h2>
+
+      <div class="dropdown" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="options">
+        <div class="selected">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"
+            class="dropdown-icon">
+            <g clip-path="url(#clip0_173725_75)">
+              <path d="M9.88 20.5466L16 14.44L22.12 20.5466L24 18.6666L16 10.6666L8 18.6666L9.88 20.5466Z"
+                fill="white" />
+            </g>
+            <defs>
+              <clipPath id="clip0_173725_75">
+                <rect width="32" height="32" fill="white" transform="translate(32 32) rotate(-180)" />
+              </clipPath>
+            </defs>
+          </svg>
+        </div>
+        <ol id="options" class="dropdown-menu" role="listbox" aria-label="Options">
+          <li class="dropdown-option" tabindex="0" role="option" id="filter-popularite" data-order="1">
+            Popularité</li>
+            <li class="dropdown-divider" role="separator"></li>
+          <li class="dropdown-option" tabindex="0" role="option" id="filter-date" data-order="2">Date</li>
+          <li class="dropdown-divider" role="separator"></li>
+          <li class="dropdown-option" tabindex="0" role="option" id="filter-titre" data-order="3">Titre
+          </li>
+        </ol>
+      </div>
+
+
+
+    </div>
+    <div class="photo-grid" id="photo-grid" role="group">
+      <!-- Photos will be dynamically added here -->
+    </div>
+    <div class="price-and-likes">
+      <div class="total_likes" role="status" aria-live="polite"></div>
+    </div>
+
+  </main>
+  <div id="contact_modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-dialog">
+      <div class="modal-content" aria-labelledby="contact-modal-title">
+        <header class="modal-header">
+          <h2 id="contact-modal-title">Contactez-moi</h2>
+          <div class="modal-close-btn" aria-label="Fermer" aria-controls="contact_modal">
+            <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M42 4.23L37.77 0L21 16.77L4.23 0L0 4.23L16.77 21L0 37.77L4.23 42L21 25.23L37.77 42L42 37.77L25.23 21L42 4.23Z" fill="white" />
+            </svg>
+          </div>
+        </header>
+        <form id="contact-form">
+          <div class="firstname-container">
+            <label for="first-name">Prénom</label>
+            <input id="first-name" type="text">
+          </div>
+          <div>
+            <label for="last-name">Nom</label>
+            <input id="last-name" type="text">
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" type="text">
+          </div>
+          <div class="message-container">
+            <label for="message">Votre message</label>
+            <textarea id="message"></textarea>
+          </div>
+          <button class="send-button">Envoyer</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div id="image-carousel" class="image-carousel" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="carousel-prev" aria-label="Previous Image" tabindex="0">
+      <svg width="30" height="48" viewBox="0 0 30 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M29.6399 42.36L11.3199 24L29.6399 5.64L23.9999 -2.46532e-07L-0.000107861 24L23.9999 48L29.6399 42.36Z"
+          fill="#911C1C" />
+      </svg>
+    </div>
+    <div class="carousel-next" aria-label="Next Image" tabindex="0">
+      <svg width="30" height="48" viewBox="0 0 30 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0.360108 5.64L18.6801 24L0.360107 42.36L6.00011 48L30.0001 24L6.00011 3.88195e-06L0.360108 5.64Z"
+          fill="#911C1C" />
+      </svg>
+    </div>
+    <div class="carousel-content">
+      <!-- Images will be added here -->
+    </div>
+    <div class="carousel-close" aria-label="Close Carousel" tabindex="0">
+      <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M42 4.23L37.77 0L21 16.77L4.23 0L0 4.23L16.77 21L0 37.77L4.23 42L21 25.23L37.77 42L42 37.77L25.23 21L42 4.23Z"
+          fill="#911C1C" />
+      </svg>
+    </div>
+  </div>
+  <div class="overlay"></div>
+  <script type="module" src="./scripts/pages/photographer.js"></script>
+  <script type="module" src="./scripts/utils/dropdown.js"></script>
+  <script type="module" src="./scripts/utils/contactForm.js"></script>
+  <script type="module" src="./scripts/pages/modal.js"></script>
+</body>
+</html>
