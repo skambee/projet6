@@ -1,3 +1,5 @@
+// Fonction principale qui creer la page principale photographe complète
+
 // Import des fonctions liées aux likes
 import { calculateTotalLikes, updateTotalLikes } from './likes.js';
 
