@@ -1,21 +1,40 @@
 
+// Calcule le total des likes de toutes les photos affichées
 export function calculateTotalLikes() {
-    const likeElements = document.querySelectorAll('.photo-likes');
-    let totalLikes = 0;
+  // Récupère tous les éléments contenant les likes
+  const likeElements = document.querySelectorAll('.photo-likes');
 
-    likeElements.forEach(likeElement => {
-      const likes = parseInt(likeElement.textContent);
-      if (!isNaN(likes)) {
-        totalLikes += likes;
-      }
-    });
+  // Compteur total des likes
+  let totalLikes = 0;
 
-    return totalLikes;
-  }
+  // Parcourt chaque élément de like
+  likeElements.forEach(likeElement => {
+    // Convertit le texte en nombre
+    const likes = parseInt(likeElement.textContent);
 
- export function updateTotalLikes() {
-    const totalLikes = calculateTotalLikes();
-    const priceAndLikesContainer = document.querySelector('.total_likes');
-    // Accessibilité : ajoute un libellé clair au compteur total de likes.
-    priceAndLikesContainer.innerHTML = `<span class="total-likes" aria-label="Total des likes">${totalLikes}</span>`
-  }
+    // Vérifie que la valeur est bien un nombre
+    if (!isNaN(likes)) {
+      totalLikes += likes; // Ajoute au total
+    }
+  });
+
+  // Retourne le total des likes
+  return totalLikes;
+}
+
+// Met à jour l'affichage du total des likes sur la page
+export function updateTotalLikes() {
+  // Récupère le total des likes calculé
+  const totalLikes = calculateTotalLikes();
+
+  // Récupère le conteneur HTML où afficher le total
+  const priceAndLikesContainer = document.querySelector('.total_likes');
+
+  // Met à jour le contenu HTML avec le nouveau total
+  // Accessibilité : ajoute un label pour les lecteurs d’écran
+  priceAndLikesContainer.innerHTML = `
+    <span class="total-likes" aria-label="Total des likes">
+      ${totalLikes}
+    </span>
+  `;
+}
