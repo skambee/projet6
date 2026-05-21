@@ -1,198 +1,105 @@
-// Gestion du carrousel d'images et de vidéos.
-// Ce fichier permet d'ouvrir une lightbox, naviguer entre les médias et la fermer.
-
-// Import de la fonction qui crée un média (image ou vidéo)
+// carousel.js
 import { createMedia } from './media.js';
-
-// Import du tableau contenant toutes les photos
 import { photographerPhotos } from './data.js';
 
-
-// =========================
-// Sélection des éléments HTML
-// =========================
-
-// Conteneur principal du carrousel
+// Global DOM variables
 const imageCarousel = document.getElementById('image-carousel');
-
-// Fond sombre derrière la fenêtre (overlay)
 const overlay = document.querySelector('.overlay');
-
-// Bouton pour fermer le carrousel
 const closeCarouselButton = document.querySelector('.carousel-close');
-
-// Bouton image précédente
 const prevButton = document.querySelector('.carousel-prev');
-
-// Bouton image suivante
 const nextButton = document.querySelector('.carousel-next');
-
-// Zone où s’affiche l’image
 const carouselContent = document.querySelector('.carousel-content');
 
-
-// Index de l’image affichée (position dans le tableau)
 let currentImageIndex = 0;
 
-
-// =========================
-// Ouvrir le carrousel
-// =========================
+// Function to open the image carousel with media data
 export function openCarousel(mediaData) {
-
-  // Affiche le carrousel
   imageCarousel.style.display = 'block';
-
-  // Affiche le fond sombre
+  // Accessibilité : annonce l’ouverture de la lightbox aux technologies d’assistance.
+  imageCarousel.setAttribute('aria-hidden', 'false');
   overlay.style.display = 'block';
-
-  // Trouve l’index de l’image cliquée
-  currentImageIndex = photographerPhotos.findIndex(
-    item => item.id === mediaData.id
-  );
-
-  // Affiche l’image actuelle
+  currentImageIndex = photographerPhotos.findIndex(item => item.id === mediaData.id);
   loadCurrentImage();
-
-  // Met le focus sur le bouton fermer
+  // Accessibilité : place le focus dans la lightbox dès son ouverture.
   closeCarouselButton.focus();
-
-  // Active le clavier (flèches + Escape)
   document.addEventListener('keydown', handleKeyDown);
 }
 
 
-// =========================
-// Fermer le carrousel
-// =========================
 function closeImageCarousel() {
-
-  // Cache le carrousel
   imageCarousel.style.display = 'none';
-
-  // Cache le fond sombre
+  // Accessibilité : masque la lightbox aux lecteurs d’écran après fermeture.
+  imageCarousel.setAttribute('aria-hidden', 'true');
   overlay.style.display = 'none';
-
-  // Désactive les touches clavier
+  // Accessibilité : évite de garder les raccourcis clavier actifs après fermeture.
   document.removeEventListener('keydown', handleKeyDown);
 }
 
 
-// =========================
-// Charger l’image actuelle
-// =========================
 function loadCurrentImage() {
-
-  // Vide l’ancien contenu
   carouselContent.innerHTML = '';
 
-  // Crée le média actuel (image ou vidéo)
   const media = createMedia(photographerPhotos[currentImageIndex]);
-
-  // Crée l’élément HTML du média
   const mediaElement = media.createMediaElement();
-
-  // Ajoute le média dans la page
+  mediaElement.classList.add('lightbox-media');
   carouselContent.appendChild(mediaElement);
-
-  // Crée le titre du média
+  // Accessibilité : le titre du média devient un paragraphe lisible plutôt qu’un div neutre.
   const mediaTitle = document.createElement('p');
-
-  // Met le texte du titre
+  mediaTitle.classList.add('media-title');
   mediaTitle.textContent = media.title;
-
-  // Ajoute le titre dans le carrousel
   carouselContent.appendChild(mediaTitle);
 }
 
 
-// =========================
-// Bouton précédent
-// =========================
-function showPreviousMedia() {
 
-  // Vérifie qu’on n’est pas au début
-  if (currentImageIndex > 0) {
-
-    // Recule d’une image
-    currentImageIndex--;
-
-    // Recharge l’affichage
-    loadCurrentImage();
-  }
-}
-
-
-// =========================
-// Bouton suivant
-// =========================
-function showNextMedia() {
-
-  // Vérifie qu’on n’est pas à la fin
-  if (currentImageIndex < photographerPhotos.length - 1) {
-
-    // Avance d’une image
-    currentImageIndex++;
-
-    // Recharge l’affichage
-    loadCurrentImage();
-  }
-}
-
-
-// =========================
-// Boutons (clics)
-// =========================
-
-// Image précédente
+// Handle previous button click
+// Accessibilité : même logique utilisée au clic et au clavier pour le média précédent.
 prevButton.addEventListener('click', showPreviousMedia);
 
-// Image suivante
+// Handle next button click
+// Accessibilité : même logique utilisée au clic et au clavier pour le média suivant.
 nextButton.addEventListener('click', showNextMedia);
 
-// Fermer le carrousel
+// Handle close button click
 closeCarouselButton.addEventListener('click', closeImageCarousel);
-
-// Cliquer sur le fond sombre ferme aussi
 overlay.addEventListener('click', closeImageCarousel);
 
-
-// =========================
-// Ouvrir le carrousel depuis la galerie
-// =========================
-
-// Sélection de toutes les images de la galerie
-document.querySelectorAll('.photo').forEach((item, index) => {
-
-  // Au clic sur une image
-  item.addEventListener('click', () => {
-
-    // Définit l’image cliquée
+// Add click event listeners to open the image carousel
+const mediaGridItems = document.querySelectorAll('.photo');
+mediaGridItems.forEach((mediaItem, index) => {
+  mediaItem.addEventListener('click', () => {
     currentImageIndex = index;
-
-    // Ouvre le carrousel
-    openCarousel(photographerPhotos[index]);
+    openCarousel(photographerPhotos[index], photographerPhotos); // Pass the media data and the photos array
   });
 });
 
 
-// =========================
-// Gestion du clavier
-// =========================
+// Accessibilité : fonction réutilisable pour les boutons et les flèches clavier.
+function showPreviousMedia() {
+  if (currentImageIndex > 0) {
+    currentImageIndex--;
+    loadCurrentImage();
+  }
+}
+
+// Accessibilité : fonction réutilisable pour les boutons et les flèches clavier.
+function showNextMedia() {
+  if (currentImageIndex < photographerPhotos.length - 1) {
+    currentImageIndex++;
+    loadCurrentImage();
+  }
+}
+
 function handleKeyDown(event) {
-
-  // Flèche gauche → image précédente
-  if (event.key === 'ArrowLeft') {
-    showPreviousMedia();
-  }
-
-  // Flèche droite → image suivante
-  if (event.key === 'ArrowRight') {
-    showNextMedia();
-  }
-
-  // Échap → fermer le carrousel
-  if (event.key === 'Escape') {
-    closeImageCarousel();
+  switch (event.key) {
+    case 'ArrowLeft':
+      showPreviousMedia();
+      break;
+    case 'ArrowRight':
+      showNextMedia();
+      break;
+    case 'Escape':
+      closeImageCarousel();
+      break;
   }
 }

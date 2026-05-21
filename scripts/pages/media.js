@@ -1,5 +1,3 @@
-// Gestion et affichage des médias.
-
 // ==============================
 // CLASSE POUR LES IMAGES
 // ==============================
@@ -75,8 +73,7 @@ class VideoMedia {
 // ==============================
 
 // Fonction qui crée le bon type de média (image ou vidéo)
-export // Fonction : createMedia
-function createMedia(data) {
+export function createMedia(data) {
 
   // Si le média contient une image
   if (data.image) {
