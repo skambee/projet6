@@ -1,3 +1,5 @@
+/* Styles spécifiques à la page photographe */
+
 body {
     margin: 0 auto;
     max-width: 1240px;
@@ -93,7 +95,9 @@ body {
     transform: translateX(-50%);
 }
 
-.contact_button:hover {
+/* Accessibilité : même retour visuel au focus clavier qu’au survol souris. */
+.contact_button:hover,
+.contact_button:focus {
     background-color: #D3573C;
 }
 
@@ -342,7 +346,9 @@ video {
     cursor: pointer;
 }
 
-.send-button:hover {
+/* Accessibilité : même retour visuel au focus clavier qu’au survol souris. */
+.send-button:hover,
+.send-button:focus {
     background-color: #D3573C;
 }
 
@@ -450,7 +456,11 @@ form input {
     padding-top: 8px;
 }
 
+/* Accessibilité : le bouton de fermeture est un vrai bouton, on neutralise son style par défaut. */
 .modal-close-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
     position: absolute;
     right: 0;
     top: 15px;
@@ -541,4 +551,19 @@ form input {
     letter-spacing: 0em;
     left: 50%;
     transform: translateX(-50%);  
+}
+/* Accessibilité : outline visible pour tous les éléments interactifs au clavier. */
+button:focus,
+[role="button"]:focus,
+a:focus,
+input:focus,
+textarea:focus,
+.dropdown-option:focus {
+    outline: 3px solid #000000;
+    outline-offset: 3px;
+}
+
+/* Accessibilité : indique visuellement que le cœur SVG est cliquable. */
+.photo svg[role="button"] {
+    cursor: pointer;
 }
